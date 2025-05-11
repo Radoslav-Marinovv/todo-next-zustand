@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Todo Next.js Zustand",
+  openGraph: {
+    images: '/opengraph-image.png',
+  },
   description: "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
 };
 
