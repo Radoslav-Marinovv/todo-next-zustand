@@ -1,16 +1,18 @@
 'use client'
 
-import { useState } from "react";
+import Image from "next/image";
 import TrashCan from "../../../public/trash-can.svg"
+
+import { useEffect, useState } from "react";
 import { useTodoStore, type Todo } from "@/app/store/store";
 import { STATE_DONE, STATE_ONGOING, STATE_TODO } from "@/app/constants/constants";
-import Image from "next/image";
 
 export default function Todo({ id, title, stateTitle, completed }: Todo) {
 
   const borderColor = stateTitle === STATE_TODO ? 'border-red-500' :
     stateTitle === STATE_ONGOING ? 'border-yellow-300' :
-      stateTitle === STATE_DONE ? 'border-green-300' : 'border-gray-500';
+      stateTitle === STATE_DONE ? 'border-green-300' :
+        'border-gray-500';
 
   const [editMode, setEditMode] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
@@ -23,7 +25,6 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
   function handleTodoEditModeEdit(event: React.MouseEvent) {
     event.preventDefault();
     setEditMode(false);
-
   }
 
   function handleTodoEditModeDone(event: React.MouseEvent) {
@@ -37,46 +38,19 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
     removeTodo(id);
   }
 
+  useEffect(() => {
+    if (stateTitle === STATE_DONE) {
+      changeCompleted(id, true);
+    } else {
+      changeCompleted(id, false);
+    }
+  }, [stateTitle, changeCompleted, id]);
+
   return (
     <div
       draggable={editMode}
       onDrag={() => onDragStart(id)}
-      className={`flex flex-row justify-between p-3 m-3 border-b-2 ${borderColor} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
-      <section
-        onClick={() => changeCompleted(id)}
-        className="flex flex-col justify-center items-center border rounded-full w-fit h-full p-3 hover:cursor-default">
-        {completed ?
-          <>
-            <label htmlFor='completed'></label>
-            <button type="button" className="border hover:bg-red-700/75 rounded-full p-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 stroke-current stroke-2">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </> :
-          <>
-            <label htmlFor='completed'></label>
-            <button type="button" className="border hover:bg-green-700/75 rounded-full p-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 stroke-current stroke-2">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12l6 6L19.5 7" />
-              </svg>
-            </button>
-          </>}
-      </section>
+      className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColor} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
       <section className="flex flex-col  gap-8 w-full mx-3">
         {editMode ?
           <>
@@ -121,12 +95,11 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="h-6 w-6 stroke-current stroke-2"
-            >
+              className="h-6 w-6 stroke-current stroke-2">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12" />
+                d="M4.5 12l6 6L19.5 7" />
             </svg>
           </button>}
         <div className="border w-full"></div>
