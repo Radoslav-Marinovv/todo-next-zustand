@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Todo Next.js Zustand",
-  description: "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+  description: "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOING | DONE columns, all todo tickets can be dragged to different column.",
   keywords: [
     "Next.js",
     "Zustand",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Todo Next.js Zustand",
     description:
-      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOING | DONE columns, all todo tickets can be dragged to different column.",
     images: "/opengraph-image.png",
   },
   icons: {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Todo Next.js Zustand",
     description:
-      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOING | DONE columns, all todo tickets can be dragged to different column.",
     url: "https://todo-nextjs-zustand.vercel.app/",
     siteName: "Todo Next.js Zustand",
     type: "website",
