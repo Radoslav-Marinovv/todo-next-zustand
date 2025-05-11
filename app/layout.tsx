@@ -45,13 +45,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Todo Next.js Zustand",
-    description:
-      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOING | DONE columns, all todo tickets can be dragged to different column.",
-    url: "https://todo-nextjs-zustand.vercel.app/",
-    siteName: "Todo Next.js Zustand",
-    type: "website",
-    locale: "en_US",
     images: [
       {
         url: "/opengraph-image.png",
@@ -60,6 +53,13 @@ export const metadata: Metadata = {
         alt: "Todo Next.js Zustand",
       },
     ],
+    title: "Todo Next.js Zustand",
+    description:
+      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOING | DONE columns, all todo tickets can be dragged to different column.",
+    url: "https://todo-nextjs-zustand.vercel.app/",
+    siteName: "Todo Next.js Zustand",
+    type: "website",
+    locale: "en_US",
   },
 };
 
