@@ -51,17 +51,17 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
       draggable={editMode}
       onDrag={() => onDragStart(id)}
       className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColor} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
-      <section className="flex flex-col  gap-8 w-full mx-3">
+      <section className="flex flex-col gap-8 w-full mx-3">
         {editMode ?
           <>
-            <p className={`${completed && 'line-through'} text-justify  border-2 border-gray-500/75 px-4 min-w-full w-auto h-full`}>{title}</p>
+            <p className={`${completed && 'line-through'} text-wrap text-justify  border-2 border-gray-500/75 px-4 min-w-full w-auto h-full`}>{title}</p>
           </> :
           <>
             <input
               name="title"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className={`${completed && 'line-through'} text-justify  border-2 min-w-full w-auto h-full border-green-500/75`}>
+              className={`${completed && 'line-through'} text-wrap text-justify border-2 min-w-full w-auto h-full border-green-500/75`}>
             </input>
           </>
         }
