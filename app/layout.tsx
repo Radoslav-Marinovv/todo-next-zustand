@@ -14,10 +14,53 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Todo Next.js Zustand",
-  openGraph: {
-    images: '/opengraph-image.png',
-  },
   description: "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+  keywords: [
+    "Next.js",
+    "Zustand",
+    "Todo",
+    "Drag and Drop",
+    "Local Storage",
+    "React",
+  ],
+  authors: [
+    {
+      name: "Radoslav Marinov",
+      url: "https://radoslav-marinov-portfolio.vercel.app/#Portfolio",
+    },
+  ],
+  creator: "Radoslav Marinov",
+  publisher: "Radoslav Marinov",
+  applicationName: "Todo Next.js Zustand",
+  twitter: {
+    card: "summary_large_image",
+    title: "Todo Next.js Zustand",
+    description:
+      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+    images: "/opengraph-image.png",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "Todo Next.js Zustand",
+    description:
+      "Todo application with Next.js and Zustand - no database, all todo's are stored at local-storage. Have TODO | ONGOIN | DONE columns, all todo tickets can be dragged to different column.",
+    url: "https://todo-nextjs-zustand.vercel.app/",
+    siteName: "Todo Next.js Zustand",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Todo Next.js Zustand",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
