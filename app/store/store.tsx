@@ -20,7 +20,7 @@ export type State = {
 export type Actions = {
   addTodo: (title: Todo['title']) => void;
   removeTodo: (id: Todo['id']) => void;
-  changeCompleted: (id: Todo['id']) => void;
+  changeCompleted: (id: Todo['id'], newCompletedState: boolean) => void;
   changeTitle: (id: Todo['id'], newTitle: Todo['title']) => void;
   onDragStart: (id: Todo['id']) => void;
   onDragOver: (groupTitle: StateTitle) => void;
@@ -42,10 +42,10 @@ export const useTodoStore = create<State & Actions>()(
       removeTodo: (id: Todo['id']) => set(state => ({
         todos: state.todos.filter(todo => todo.id !== id)
       })),
-      changeCompleted: (id: Todo['id']) => set(state => ({
+      changeCompleted: (id: Todo['id'], newCompletedState) => set(state => ({
         todos: state.todos.map(todo =>
           todo.id === id ?
-            { ...todo, completed: !todo.completed } :
+            { ...todo, completed: newCompletedState } :
             todo
         )
       })),
