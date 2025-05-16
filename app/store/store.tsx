@@ -24,6 +24,7 @@ export type Actions = {
   changeTitle: (id: Todo['id'], newTitle: Todo['title']) => void;
   onDragStart: (id: Todo['id']) => void;
   onDragOver: (groupTitle: StateTitle) => void;
+  clearDrag: () => void;
 }
 
 
@@ -66,6 +67,9 @@ export const useTodoStore = create<State & Actions>()(
           }
           return todo;
         }),
+      })),
+      clearDrag: () => set(() => ({
+        onDrag: null
       }))
     }),
     {
