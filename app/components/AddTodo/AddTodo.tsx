@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useTodoStore } from "@/app/store/store"
+import { MAX_TODO_LENGTH } from "@/app/constants/constants"
 
 export default function AddTodo() {
 
@@ -20,7 +21,7 @@ export default function AddTodo() {
     <div className="flex flex-row justify-center items-center gap-3 m-3 p-3 min-w-fit w-full max-w-3xl border">
       <textarea
         minLength={1}
-        maxLength={50}
+        maxLength={MAX_TODO_LENGTH}
         placeholder="Add a new Todo"
         value={title}
         onKeyUp={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
