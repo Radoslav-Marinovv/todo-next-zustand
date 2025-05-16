@@ -13,11 +13,9 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col overscroll-none gap-6 justify-center h-screen">
-        <div className="flex flex-none justify-center">
-          <AddTodo />
-        </div>
-        <div className="flex flex-row flex-1 gap-3 mb-6 justify-center">
+      <main className="flex flex-col gap-6 items-center min-h-screen min-w-fit w-full bg-gradient-to-b from-slate-900 to-slate-800/75">
+        <AddTodo />
+        <div className="flex flex-row w-full gap-3 justify-center">
           <TodoList todos={todoState} groupTitle={STATE_TODO} />
           <TodoList todos={ongoingState} groupTitle={STATE_ONGOING} />
           <TodoList todos={doneState} groupTitle={STATE_DONE} />
