@@ -10,14 +10,18 @@ type TodoListProps = {
 
 export default function TodoList({ todos, groupTitle }: TodoListProps) {
   const onDragOver = useTodoStore(state => state.onDragOver);
+  const clearDrag = useTodoStore(state => state.clearDrag);
+
   function handleDragOver(event: React.DragEvent) {
     event.preventDefault();
     onDragOver(groupTitle);
   }
+
   return (
     <div
       onDragEnter={handleDragOver}
-      className="flex flex-col gap-4 min-w-1/4 w-[30%] border">
+      onDragEnd={clearDrag}
+      className="flex flex-col gap-4 w-[30%] max-w-[30%] border">
       <h2 className="relative top-3 left-3 font-semibold">{groupTitle}</h2>
       {todos && todos.map((todo: Todo) => (
         <Task
