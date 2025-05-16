@@ -9,10 +9,16 @@ import { STATE_DONE, STATE_ONGOING, STATE_TODO } from "@/app/constants/constants
 
 export default function Todo({ id, title, stateTitle, completed }: Todo) {
 
-  const borderColor = stateTitle === STATE_TODO ? 'border-red-500' :
+  const borderColorStyle = stateTitle === STATE_TODO ? 'border-red-500' :
     stateTitle === STATE_ONGOING ? 'border-yellow-300' :
       stateTitle === STATE_DONE ? 'border-green-300' :
-        'border-gray-500';
+        '';
+
+  const stateTextDecorationStyle = stateTitle === STATE_DONE ? 'line-through' : '';
+
+  const stateTextColorStyle = stateTitle === STATE_DONE ? 'text-green-300/75' :
+    stateTitle === STATE_ONGOING ? 'text-yellow-300/75' :
+      '';
 
   const [editMode, setEditMode] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
@@ -22,18 +28,18 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
   const changeTitle = useTodoStore(state => state.changeTitle);
   const changeCompleted = useTodoStore(state => state.changeCompleted);
 
-  function handleTodoEditModeEdit(event: React.MouseEvent) {
+  function handleTodoEditModeEdit(event: React.MouseEvent | React.TouchEvent) {
     event.preventDefault();
     setEditMode(false);
   }
 
-  function handleTodoEditModeDone(event: React.MouseEvent) {
+  function handleTodoEditModeDone(event: React.MouseEvent | React.TouchEvent) {
     event.preventDefault();
     setEditMode(true);
     changeTitle(id, newTitle);
   }
 
-  function handleRemoveTodo(event: React.MouseEvent, id: Todo['id']) {
+  function handleRemoveTodo(event: React.MouseEvent | React.TouchEvent, id: Todo['id']) {
     event.preventDefault();
     removeTodo(id);
   }
@@ -50,18 +56,18 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
     <div
       draggable={editMode}
       onDrag={() => onDragStart(id)}
-      className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColor} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
+      className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColorStyle} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
       <section className="flex flex-col gap-8 w-full mx-3">
         {editMode ?
           <>
-            <p className={`${completed && 'line-through'} text-wrap text-justify  border-2 border-gray-500/75 px-4 min-w-full w-auto h-full`}>{title}</p>
+            <p className={`${stateTextDecorationStyle} ${stateTextColorStyle} text-wrap text-justify  border-2 border-gray-500/75 px-4 min-w-full w-auto h-full`}>{title}</p>
           </> :
           <>
             <input
               name="title"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className={`${completed && 'line-through'} text-wrap text-justify border-2 min-w-full w-auto h-full border-green-500/75`}>
+              className={`${stateTextDecorationStyle} text-wrap text-justify border-2 min-w-full w-auto h-full border-green-500/75`}>
             </input>
           </>
         }
@@ -70,7 +76,7 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
         className="flex flex-col gap-3 p-3 justify-center items-center border rounded-full w-fit h-full hover:cursor-default"
       >
         {editMode ?
-          <button
+          !completed && <button
             type="button"
             title="edit button"
             onClick={handleTodoEditModeEdit}
@@ -102,7 +108,7 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
                 d="M4.5 12l6 6L19.5 7" />
             </svg>
           </button>}
-        <div className="border w-full"></div>
+        {!completed && <div className="border w-full"></div>}
         <button
           type="button"
           title="delete button"
