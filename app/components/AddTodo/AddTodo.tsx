@@ -9,24 +9,28 @@ export default function AddTodo() {
   const addTodo = useTodoStore(state => state.addTodo)
 
   function handleAddTodo(title: string) {
+    if (title.trim().length === 0) {
+      return;
+    }
     addTodo(title)
     setTitle('')
   }
 
   return (
-    <div className="flex flex-row flex-none items-center gap-3 m-3 p-3 max-w-3xl border">
-      <input
-        type="text"
+    <div className="flex flex-row justify-center items-center gap-3 m-3 p-3 min-w-fit w-full max-w-3xl border">
+      <textarea
+        minLength={1}
+        maxLength={50}
         placeholder="Add a new Todo"
         value={title}
-        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+        onKeyUp={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.key === 'Enter') {
             e.preventDefault()
             handleAddTodo(title)
           }
         }}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
-        className="flex m-3 w-2xl border-l border-r"
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(e.target.value)}
+        className="min-w-fit w-full max-w-2xl border-l border-r"
       />
       <button
         type="button"
