@@ -21,7 +21,7 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
     <div
       onDragEnter={handleDragOver}
       onDragEnd={clearDrag}
-      className="flex flex-col gap-4 w-[30%] max-w-[30%] border">
+      className="flex flex-col gap-4 lg:w-[30%] lg:max-w-[30%] border">
       <h2 className="relative top-3 left-3 font-semibold">{groupTitle}</h2>
       {todos && todos.map((todo: Todo) => (
         <Task

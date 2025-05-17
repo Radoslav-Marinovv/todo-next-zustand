@@ -31,7 +31,7 @@ export default function AddTodo() {
           }
         }}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(e.target.value)}
-        className="min-w-fit w-full max-w-2xl border-l border-r"
+        className="wrap-break-word min-w-fit w-full max-w-2xl border-l border-r"
       />
       <button
         type="button"

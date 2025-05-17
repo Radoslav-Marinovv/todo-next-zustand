@@ -5,7 +5,7 @@ import TrashCan from "../../../public/trash-can.svg"
 
 import { useEffect, useState } from "react";
 import { useTodoStore, type Todo } from "@/app/store/store";
-import { STATE_DONE, STATE_ONGOING, STATE_TODO } from "@/app/constants/constants";
+import { MAX_TODO_LENGTH, STATE_DONE, STATE_ONGOING, STATE_TODO } from "@/app/constants/constants";
 
 export default function Todo({ id, title, stateTitle, completed }: Todo) {
 
@@ -57,18 +57,20 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
       draggable={editMode}
       onDrag={() => onDragStart(id)}
       className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColorStyle} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
-      <section className="flex flex-col gap-8 w-full mx-3">
+      <section className="lg:w-3/4 w-11/12">
         {editMode ?
           <>
-            <p className={`${stateTextDecorationStyle} ${stateTextColorStyle} text-wrap text-justify  border-2 border-gray-500/75 px-4 min-w-full w-auto h-full`}>{title}</p>
+            <p className={`${stateTextDecorationStyle} ${stateTextColorStyle} text-wrap border-2 border-gray-500/75 p-2 w-full h-full`}>{title}</p>
           </> :
           <>
-            <input
+            <textarea
               name="title"
+              minLength={1}
+              maxLength={MAX_TODO_LENGTH}
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className={`${stateTextDecorationStyle} text-wrap text-justify border-2 min-w-full w-auto h-full border-green-500/75`}>
-            </input>
+              className={`${stateTextDecorationStyle} wrap-break-word text-wrap border-2 p-2 w-full h-full border-green-500/75`}>
+            </textarea>
           </>
         }
       </section>
@@ -113,13 +115,13 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
           type="button"
           title="delete button"
           onClick={(event) => handleRemoveTodo(event, id)}
-          className="hover:bg-red-700/75 border rounded-full p-1">
+          className="hover:bg-red-700/75 border rounded-full p-1 min-w-8">
           <Image about="trash can"
             width={24}
             height={24}
             src={TrashCan.src}
             alt="trash can"
-            className="h-6 w-6"
+            className="h-6 w-6 min-w-fit"
           />
         </button>
       </section>
