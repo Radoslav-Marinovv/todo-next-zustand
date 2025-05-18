@@ -21,14 +21,20 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
     <div
       onDragEnter={handleDragOver}
       onDragEnd={clearDrag}
-      className="flex flex-col gap-4 lg:w-[30%] lg:max-w-[30%] border">
+      className="flex flex-col gap-4 lg:w-[30%] min-h-12 lg:max-w-[30%] border">
       <h2 className="relative top-3 left-3 font-semibold">{groupTitle}</h2>
+      <div className="border w-[90%] self-center"></div>
       {todos && todos.map((todo: Todo) => (
         <Task
           key={todo.id}
           {...todo}
         />
-      ))}
+      ))
+      }
+      {todos.length === 0 &&
+        <div className="mb-4">
+          <p className="text-center text-gray-500">No todo&#39;s in this column</p>
+        </div>}
     </div>
   );
 }
