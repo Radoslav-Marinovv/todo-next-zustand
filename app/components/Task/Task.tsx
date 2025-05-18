@@ -16,8 +16,8 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
 
   const stateTextDecorationStyle = stateTitle === STATE_DONE ? 'line-through' : '';
 
-  const stateTextColorStyle = stateTitle === STATE_DONE ? 'text-green-300/75' :
-    stateTitle === STATE_ONGOING ? 'text-yellow-300/75' :
+  const stateTextColorStyle = stateTitle === STATE_DONE ? 'text-green-300/85' :
+    stateTitle === STATE_ONGOING ? 'text-yellow-300/85' :
       '';
 
   const [editMode, setEditMode] = useState(true);
@@ -55,7 +55,7 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
   return (
     <div
       draggable={editMode}
-      onDrag={() => onDragStart(id)}
+      onDragStart={() => onDragStart(id)}
       className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColorStyle} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
       <section className="lg:w-3/4 w-11/12">
         {editMode ?
@@ -98,7 +98,7 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
             type="button"
             title="edit button"
             onClick={handleTodoEditModeDone}
-            className="hover:bg-blue-700/75 border rounded-full p-1">
+            className="hover:bg-green-700/75 bg-green-600 border rounded-full p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
