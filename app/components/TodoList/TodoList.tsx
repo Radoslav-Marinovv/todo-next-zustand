@@ -33,7 +33,7 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
       }
       {todos.length === 0 &&
         <div className="mb-4">
-          <p className="text-center text-gray-500">No todo&#39;s in this column</p>
+          <p className="text-center text-gray-500">No todo&#39;s here</p>
         </div>}
     </div>
   );
