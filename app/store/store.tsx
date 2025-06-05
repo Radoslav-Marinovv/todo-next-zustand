@@ -23,7 +23,8 @@ export type Actions = {
   changeCompleted: (id: Todo['id'], newCompletedState: boolean) => void;
   changeTitle: (id: Todo['id'], newTitle: Todo['title']) => void;
   onDragStart: (id: Todo['id']) => void;
-  onDragOver: (groupTitle: StateTitle) => void;
+  onDragEnterGroup: (groupTitle: StateTitle) => void;
+  onDragEnterElement: (todo: Todo) => void;
   clearDrag: () => void;
 }
 
@@ -60,7 +61,7 @@ export const useTodoStore = create<State & Actions>()(
       onDragStart: (id: Todo['id']) => set(() => ({
         onDrag: id
       })),
-      onDragOver: (groupTitle) => set(state => ({
+      onDragEnterGroup: (groupTitle) => set(state => ({
         todos: state.todos.map(todo => {
           if (todo.id === state.onDrag) {
             return { ...todo, stateTitle: groupTitle };
@@ -68,6 +69,15 @@ export const useTodoStore = create<State & Actions>()(
           return todo;
         }),
       })),
+      onDragEnterElement: (todo) => set((state) => {
+        const draggedTodoIndex = state.todos.filter(t => t.id === state.onDrag);
+        const allButDraggedTodos = state.todos.filter(t => t.id !== state.onDrag);
+        const draggedOverTodoIndex = state.todos.findIndex(t => t.id === todo.id);
+
+        return {
+          todos: allButDraggedTodos.toSpliced(draggedOverTodoIndex, 0, ...draggedTodoIndex)
+        }
+      }),
       clearDrag: () => set(() => ({
         onDrag: null
       }))

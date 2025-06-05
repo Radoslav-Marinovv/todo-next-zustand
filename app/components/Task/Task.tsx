@@ -56,7 +56,7 @@ export default function Todo({ id, title, stateTitle, completed }: Todo) {
     <div
       draggable={editMode}
       onDragStart={() => onDragStart(id)}
-      className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColorStyle} hover:cursor-pointer even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md`}>
+      className={`flex flex-row justify-between p-3 m-3 max-w-full border-b-2 ${borderColorStyle} hover:cursor-pointer`}>
       <section className="lg:w-3/4 w-11/12">
         {editMode ?
           <>
