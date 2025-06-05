@@ -24,7 +24,7 @@ export type Actions = {
   changeTitle: (id: Todo['id'], newTitle: Todo['title']) => void;
   onDragStart: (id: Todo['id']) => void;
   onDragEnterGroup: (groupTitle: StateTitle) => void;
-  onDragEnterElement: (todo: Todo) => void;
+  onDragEnterElement: (todoId: Todo['id']) => void;
   clearDrag: () => void;
 }
 
@@ -69,10 +69,10 @@ export const useTodoStore = create<State & Actions>()(
           return todo;
         }),
       })),
-      onDragEnterElement: (todo) => set((state) => {
+      onDragEnterElement: (todoId) => set((state) => {
         const draggedTodoIndex = state.todos.filter(t => t.id === state.onDrag);
         const allButDraggedTodos = state.todos.filter(t => t.id !== state.onDrag);
-        const draggedOverTodoIndex = state.todos.findIndex(t => t.id === todo.id);
+        const draggedOverTodoIndex = state.todos.findIndex(t => t.id === todoId);
 
         return {
           todos: allButDraggedTodos.toSpliced(draggedOverTodoIndex, 0, ...draggedTodoIndex)

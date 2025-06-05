@@ -17,9 +17,9 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
     event.preventDefault();
     onDragEnterGroup(groupTitle);
   }
-  function handleDragEnterElement(event: React.DragEvent, todo: Todo) {
+  function handleDragEnterElement(event: React.DragEvent, todoId: Todo['id']) {
     event.preventDefault();
-    onDragEnterElement(todo);
+    onDragEnterElement(todoId);
   }
 
   return (
@@ -32,7 +32,7 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
       {todos && todos.map((todo: Todo) => (
         <div
           key={todo.id}
-          onDragEnter={(event) => { handleDragEnterElement(event, todo) }}
+          onDragEnter={(event) => { handleDragEnterElement(event, todo.id) }}
           className=" even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md m-2"
         >
           <Task
