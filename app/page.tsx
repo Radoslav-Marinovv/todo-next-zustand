@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col gap-6 items-center min-h-screen min-w-fit w-full bg-gradient-to-b from-slate-900 to-slate-800/75">
+      <main className="flex flex-col gap-6 items-center min-h-screen min-w-fit w-full">
         <AddTodo />
         <div className="flex flex-col lg:flex-row w-full gap-3 justify-center">
           <TodoList todos={todoState} groupTitle={STATE_TODO} />

@@ -33,7 +33,7 @@ export default function TodoList({ todos, groupTitle }: TodoListProps) {
         <div
           key={todo.id}
           onDragEnter={(event) => { handleDragEnterElement(event, todo.id) }}
-          className=" even:bg-cyan-900/75 odd:bg-yellow-600/75 rounded-md m-2"
+          className="rounded-md last:mb-8"
         >
           <Task
             {...todo}

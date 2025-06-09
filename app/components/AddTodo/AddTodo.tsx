@@ -18,20 +18,20 @@ export default function AddTodo() {
   }
 
   return (
-    <div className="flex flex-row justify-center items-center gap-3 m-3 p-3 min-w-fit w-full max-w-3xl border">
+    <div className="flex flex-row justify-center items-center gap-3 m-3 p-3 min-w-fit w-full max-w-3xl border rounded-lg">
       <textarea
         minLength={1}
         maxLength={MAX_TODO_LENGTH}
         placeholder="Add a new Todo"
         value={title}
-        onKeyUp={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.key === 'Enter') {
             e.preventDefault()
             handleAddTodo(title)
           }
         }}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(e.target.value)}
-        className="wrap-break-word min-w-fit w-full max-w-2xl border-l border-r"
+        className="text-lg wrap-break-word min-w-fit w-full max-w-2xl border rounded-lg p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition duration-300 ease-in-out"
       />
       <button
         type="button"
